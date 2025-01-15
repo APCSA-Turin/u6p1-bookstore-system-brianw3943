@@ -42,7 +42,14 @@ public class BookStore{
     }
 
     public void consolidateUsers(){
-        
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == null) {
+                for (int j = users.length - 1 - i; j > 0; j--) {
+                    users[j - 1] = users[j];
+                    users[users.length - 1] = null;
+                }
+            }
+        }
     }
 
     public void addBook(Book book){}
@@ -56,7 +63,14 @@ public class BookStore{
         books[index] = book;
     }
 
-    public void removeBook(Book book){}
+    public void removeBook(Book book){
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == book) {
+                books[i] = null;
+            }
+        }
+        // consolidatebooks
+    }
        
     public String bookStoreBookInfo(){} //you are not tested on this method but use it for debugging purposes
 
