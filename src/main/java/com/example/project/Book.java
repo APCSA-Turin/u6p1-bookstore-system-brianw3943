@@ -56,7 +56,7 @@ public class Book{
     }
 
     public String bookInfo(){
-        String info = "Title; " + title;
+        String info = "Title: " + title;
         info += ", Author: " + author;
         info += ", Year: " + yearPublished;
         info += ", ISBN: " + isbn;
