@@ -4,7 +4,7 @@ public class User{
     //requires 3 private attributes String name, String Id, Book book that is initialized to empty
     private String name;
     private String id;
-    private Book[] books;
+    private Book[] books = new Book[5];
     //requires 1 contructor with two parameters that will initialize the name and id
     public User(String name, String id) {
         this.name = name;
@@ -35,19 +35,19 @@ public class User{
     }
 
     public String bookListInfo(){
-        String output = "";
-        if (books == null) {
-            output += "empty\n";
-        } else {
-            for (Book book : books) {
-                output += book.bookInfo() + " ";
+        String output = "\n";
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == null) {
+                output += "empty\n";
+            } else {
+                output += books[i].bookInfo() + "\n";
             }
         }
         return output;
     } //returns a booklist for the user, if empty, output "empty"
 
     public String userInfo(){
-        return "Name: " + name + "\nID: " + id + "\nBooks: " + bookListInfo();
+        return "Name: " + name + "\nId: " + id + "\nBooks: " + bookListInfo();
     } //returns  "Name: []\nID: []\nBooks:\n[]"
        
 }

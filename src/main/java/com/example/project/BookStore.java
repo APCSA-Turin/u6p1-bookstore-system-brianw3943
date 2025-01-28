@@ -33,13 +33,17 @@ public class BookStore{
         }
     } 
 
-    public void removeUser(User user){
+    public void removeUser(User user) {
         for (int i = 0; i < users.length; i++) {
-            if (users[i] == user) {
+            if (users[i] != null && users[i].equals(user)) {
                 users[i] = null;
+                for (int j = i; j < users.length - 1; j++) {
+                    users[j] = users[j + 1];
+                }
+                users[users.length - 1] = null;
+                return;
             }
         }
-        consolidateUsers();
     }
 
     public void consolidateUsers(){
@@ -97,19 +101,23 @@ public class BookStore{
         books[index] = book;
     }
 
-    public void removeBook(Book book){
+    public void removeBook(Book book) {
+        int count = 0;
         for (int i = 0; i < books.length; i++) {
-            if (books[i] == book) {
+            if (books[i] != null && books[i].equals(book)) {
                 books[i] = null;
-            }
-        }
-        for (int j = 0; j < books.length; j++) {
-            if (books[j] == null) {
-                for (int k = books.length - 1 - j; k > 0; k--) {
-                    books[k - 1] = books[k];
-                    books[books.length - 1] = null;
+                for (int j = i; j < books.length - 1; j++) {
+                    books[j] = books[j + 1];
                 }
+                count++;
+                Book[] temp = new Book[books.length - count];
+                for (int j = 0; j < temp.length; j++) {
+                    temp[j] = books[j];
+                }
+                books = temp;
+                return;
             }
+            
         }
     }
        
