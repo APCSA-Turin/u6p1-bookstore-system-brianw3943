@@ -102,24 +102,30 @@ public class BookStore{
     }
 
     public void removeBook(Book book) {
-        int count = 0;
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null && books[i].equals(book)) {
-                books[i] = null;
-                for (int j = i; j < books.length - 1; j++) {
-                    books[j] = books[j + 1];
+        int quantity = book.getQuantity();
+        if (quantity == 1) {
+            for (int i = 0; i < books.length; i++) {
+                if (books[i] != null && books[i].equals(book)) {
+                    books[i] = null;
+                    for (int j = i; j < books.length - 1; j++) {
+                        books[j] = books[j + 1];
+                    }
+                    books[books.length - 1] = null;
+                    Book[] temp = new Book[books.length - 1];
+                    for (int j = 0; j < temp.length; j++) {
+                    temp[j] = books[j]; 
+                    }
+                    books = temp;
+                    book.setQuantity(quantity - 1);
+                    return;
                 }
-                count++;
-                Book[] temp = new Book[books.length - count];
-                for (int j = 0; j < temp.length; j++) {
-                    temp[j] = books[j];
-                }
-                books = temp;
-                return;
             }
-            
+        }
+        if (quantity > 1) {
+            book.setQuantity(quantity - 1);
         }
     }
+    
        
     public String bookStoreBookInfo(){
         String output = "";

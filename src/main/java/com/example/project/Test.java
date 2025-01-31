@@ -9,19 +9,34 @@ public class Test {
         Book b4 = new Book("Brave New World", "Aldous Huxley", 1932, "978-0060850524", 3);
         Book b5 = new Book("Test","Author",1900, "1234", 1);
         store.addBook(b1);store.addBook(b2);store.addBook(b3);store.addBook(b4);store.addBook(b5);
-        System.out.println(store.bookStoreBookInfo());
+        for (int i = 0; i < store.getBooks().length; i++) {
+            System.out.println(store.getBooks()[i]);
+        }
+        System.out.println();
         store.removeBook(b1);store.removeBook(b1);
         Book[] expected = {b1,b2,b3,b4,b5};
-        System.out.println(store.bookStoreBookInfo());
+        for (int i = 0; i < store.getBooks().length; i++) {
+            System.out.println(store.getBooks()[i]);
+        }
+        System.out.println();
         
         store.removeBook(b1); //b1 should be removed. testing consolidation
         Book[] expected2 = {b2,b3,b4,b5};
-        System.out.println(store.bookStoreBookInfo());
+        for (int i = 0; i < store.getBooks().length; i++) {
+            System.out.println(store.getBooks()[i]);
+        }
+        System.out.println();
         store.removeBook(b5);
         Book[] expected3 = {b2,b3,b4};
-        System.out.println(store.bookStoreBookInfo());
+        for (int i = 0; i < store.getBooks().length; i++) {
+            System.out.println(store.getBooks()[i]);
+        }
+        System.out.println();
         store.removeBook(b3);store.removeBook(b3);store.removeBook(b3);store.removeBook(b3);store.removeBook(b3);
         Book[] expected4 = {b2,b4};
-        System.out.println(store.bookStoreBookInfo());
+        for (int i = 0; i < store.getBooks().length; i++) {
+            System.out.println(store.getBooks()[i]);
+        }
+        System.out.println();
     }
 }
